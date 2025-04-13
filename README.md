@@ -157,3 +157,71 @@ For large-scale applications, **Flipper** is highly recommended due to its plugi
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# Android Networking Libraries Comparison
+
+| **Library**        | **Use Case** | **Kab Use Karein?** | **Advantages** | **Disadvantages** |
+|--------------------|-------------|------------------|---------------|------------------|
+| **Retrofit**      | REST API calls | Jab structured API call karni ho, JSON ko easily parse karna ho | Simple syntax, automatic JSON parsing (Gson, Moshi support), easy to use | Large file download ke liye slow ho sakta hai |
+| **OkHttp**        | Low-level HTTP client | Jab manually request-response handle karna ho, ya custom interceptor lagana ho | Powerful, connection pooling, supports WebSockets | Thoda complex setup |
+| **Gson**          | JSON Parsing | Jab JSON data ko parse ya convert karna ho | Fast, simple to use, annotation-based | Reflection use karta hai, jo performance pe impact daal sakta hai |
+| **Moshi**         | JSON Parsing | Jab lightweight aur fast JSON parsing chahiye | Performance better hai Gson se, reflection-free | Gson jitna flexible nahi hai |
+| **Volley**        | REST API calls + Image loading | Jab chhoti API requests aur image caching ek saath handle karni ho | Built-in caching, request queuing, easy to use | Large API calls ke liye slow, OkHttp jitna flexible nahi |
+| **Exoplayer**     | Video streaming | Jab high-quality video stream karna ho (YouTube, Netflix type apps) | Adaptive streaming, DRM support | Setup complex ho sakta hai |
+| **WebSockets**    | Real-time communication | Jab chat app, real-time updates (stocks, notifications) chahiye | Bi-directional communication, fast response time | Server-side setup bhi zaroori |
+| **Ktor (Client)** | Kotlin-based HTTP client | Jab Kotlin Multiplatform project ho | Coroutine-based, lightweight | Retrofit jitna mature nahi hai |
+| **Apollo GraphQL** | GraphQL API calls | Jab GraphQL backend ho aur data fetch optimize karna ho | Network requests optimize karta hai, single request se multiple data fetch ho sakta hai | REST APIs ke comparison me complex |
+| **Multiplexing (HTTP/2, GRPC)** | Multiple parallel requests | Jab ek saath multiple API calls optimize karni ho | Better performance, low latency | Complex implementation |
+
+## **Kaunsi Library Kab Use Karein?**
+
+- **Normal REST API Calls:** Retrofit + OkHttp best hai.
+- **Real-time Data (Chat, Live Stocks, Notifications):** WebSockets ya Firebase Realtime Database.
+- **Image Loading + Caching:** Glide ya Coil.
+- **Video Streaming:** ExoPlayer best hai.
+- **GraphQL Backend:** Apollo GraphQL use karo.
+- **Kotlin Multiplatform Apps:** Ktor best hai, kyunki native support deta hai.
+- **Agar Custom Networking Chahiye:** OkHttp manually use karo.
+
+### **Large-Scale Apps ke liye Best Stack**
+
+| Feature | Library |
+|---------|---------|
+| **Backend API Calls** | Retrofit + OkHttp |
+| **Real-time Chat & Notifications** | WebSockets |
+| **Media Handling (Images, Videos)** | Glide (images), ExoPlayer (videos) |
+| **GraphQL Backend Support** | Apollo GraphQL |
+| **Optimized Performance & Batching** | GRPC ya Multiplexing (HTTP/2) |
+
+### **Small Apps ke liye Best Stack**
+
+| Feature | Library |
+|---------|---------|
+| **Simple API Calls** | Volley ya Retrofit |
+| **Image Caching** | Glide ya Coil |
+| **Basic Networking** | OkHttp |
+
+Har use-case ke liye alag library best hoti hai, par large apps me multiple libraries mix karni padti hain.
+
+
+
